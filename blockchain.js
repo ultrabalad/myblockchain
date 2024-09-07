@@ -31,19 +31,11 @@ class Blockchain {
   getLatestBlock() {
     return this.chain[this.chain.length - 1];
   }
-  
-  mineBlock(block, difficulty) {
-    while (block.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
-        block.nonce++;
-        block.hash = SHA256(block.index + block.timestamp + block.data + block.nonce).toString();
-    }
-    console.log("Block mined: " + block.hash);
-  }
-  
+   
   addBlock(newBlock) {
     newBlock.previousHash = this.getLatestBlock().hash;
     newBlock.hash = newBlock.calculateHash();
-    this.mineBlock(newBlock, this.difficulty);
+    mineBlock(newBlock, this.difficulty);
     this.chain.push(newBlock);
   }
 
@@ -62,6 +54,14 @@ class Blockchain {
     }
     return true;
   }
+}
+
+function mineBlock(block, difficulty) {
+  while (block.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
+      block.nonce++;
+      block.hash = SHA256(block.index + block.timestamp + block.data + block.nonce).toString();
+  }
+  console.log("Block mined: " + block.hash);
 }
 
 module.exports.Blockchain = Blockchain;
