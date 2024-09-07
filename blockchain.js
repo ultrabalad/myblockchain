@@ -33,8 +33,8 @@ class Blockchain {
   }
    
   addBlock(newBlock) {
-    newBlock.previousHash = this.getLatestBlock().hash;
-    newBlock.hash = newBlock.calculateHash();
+    //newBlock.previousHash = this.getLatestBlock().hash;
+    //newBlock.hash = newBlock.calculateHash();
     mineBlock(newBlock, this.difficulty);
     this.chain.push(newBlock);
   }
