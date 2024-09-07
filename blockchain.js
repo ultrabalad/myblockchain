@@ -7,6 +7,7 @@ class Block {
     this.data = data;
     this.previousHash = previousHash;
     this.hash = this.calculateHash();
+    this.difficulty = 5;
   }
 
   calculateHash() {
@@ -43,7 +44,7 @@ class Blockchain {
   addBlock(newBlock) {
     newBlock.previousHash = this.getLatestBlock().hash;
     newBlock.hash = newBlock.calculateHash();
-    mineBlock(newBlock, this.difficulty);
+    this.mineBlock(newBlock, this.difficulty);
     this.chain.push(newBlock);
   }
 
