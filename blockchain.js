@@ -7,7 +7,6 @@ class Block {
     this.data = data;
     this.previousHash = previousHash;
     this.hash = this.calculateHash();
-    this.difficulty = 5;
   }
 
   calculateHash() {
